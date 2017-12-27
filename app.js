@@ -2,40 +2,141 @@
 
 // variable allHikes is equal to an array of hike objects on data.js file
 var allHikes = JSON.parse(hikes);
+var form = document.getElementById('find-hike');
+var codeFellowsLat = 47.618248;
+var codeFellowsLng = -122.351871;
+
+// filled from lengthPreference function
+var lengthPrefArr = [];
+// filled from elevationGainPreference function
+var elevGainPrefArr = [];
+// filled from distancePreference function
+var distancePrefArr = [];
 
 
-// We will need to:
-// sort by hike length
+// receives form data from find-hike.html
+function formData(event) {
+  event.preventDefault();
 
+  // receives value from find-hike.html form, parses value into integer
+  var lengthPref = parseInt(event.target.length.value);
+  var elevPref = parseInt(event.target.elevation.value);
 
-// sort by elevation gain
-function elevationGain() {
-  var counter = 0;
-  for(var i = 0; i < allHikes.length; i++) {
-    var elevationGain = parseInt(allHikes[i].elevGain);
-    if (elevationGain <= 50.0) {
-      counter += 1;
+  lengthPreference(lengthPref);
+  elevationGainPreference(elevPref);
+  // change with variable from form:
+  distancePreference(1);
+}
+
+// sorts hikes by length
+function lengthPreference(value) {
+  // receives hike length form data
+  // note: 481 hikes have null for hike length
+  if (value === 1) {
+    for(var i = 0; i < allHikes.length; i++) {
+      var hikeLength = parseInt(allHikes[i].length);
+      if (hikeLength < 5.0) {
+        lengthPrefArr.push(allHikes[i]);
+      }
     }
   }
-  console.log('# of hikes under 50 ft elevation gain',counter);
+  if (value === 2) {
+    for(var j = 0; j < allHikes.length; j++) {
+      hikeLength = parseInt(allHikes[j].length);
+      if (hikeLength >= 5.0 && hikeLength < 10.0) {
+        lengthPrefArr.push(allHikes[j]);
+      }
+    }
+  }
+  if (value === 3) {
+    for(var k = 0; k < allHikes.length; k++) {
+      hikeLength = parseInt(allHikes[k].length);
+      if (hikeLength >= 10.0 && hikeLength < 15.0) {
+        lengthPrefArr.push(allHikes[k]);
+      }
+    }
+  }
+  if (value === 4) {
+    for(var l = 0; l < allHikes.length; l++) {
+      hikeLength = parseInt(allHikes[l].length);
+      if (hikeLength >= 15.0 && hikeLength < 20.0) {
+        lengthPrefArr.push(allHikes[l]);
+      }
+    }
+  }
+  if (value === 5) {
+    for(var m = 0; m < allHikes.length; m++) {
+      hikeLength = parseInt(allHikes[m].length);
+      if (hikeLength >= 20.0) {
+        lengthPrefArr.push(allHikes[m]);
+      }
+    }
+  }
 }
-elevationGain();
 
-// sort by distance of Seattle
-//    which means we have to figure out lat/long calculation
+// TO DO: Add rest of conditional sorting statements
+// sort results from lengthPreference function by elevation gain,push into elevGainPrefArr
+function elevationGainPreference(value) {
+  console.log(lengthPrefArr.length);
+
+  if (value === 1) {
+    for(var i = 0; i < lengthPrefArr.length; i++) {
+      var elevGain = parseInt(lengthPrefArr[i].elevGain);
+      if (elevGain < 1000.0) {
+        elevGainPrefArr.push(lengthPrefArr[i]);
+      }
+    }
+  }
+}
+
+// distance calculation from http://www.geodatasource.com/developers/javascript
+// Passed to function:
+//  lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
+//  lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
+//  unit = the unit you desire for results
+//    where: 'M' is statute miles (default)
+//    'K' is kilometers
+//    'N' is nautical miles
+// Note: this calculates the air (?) distance, NOT the driving distance
+// for that, we'd need https://developers.google.com/maps/documentation/directions/ or https://developers.google.com/maps/documentation/distance-matrix/
+function distance(lat1, lon1, lat2, lon2, unit) {
+  var radlat1 = Math.PI * lat1 / 180;
+  var radlat2 = Math.PI * lat2 / 180;
+  var theta = lon1 - lon2;
+  var radtheta = Math.PI * theta / 180;
+  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist);
+  dist = dist * 180 / Math.PI;
+  dist = dist * 60 * 1.1515;
+  if (unit === 'K') {
+    dist = dist * 1.609344;
+  };
+  if (unit === 'N') {
+    dist = dist * 0.8684;
+  };
+  return dist;
+}
+
+// TO DO: Add rest of conditional sorting statements
+// sort results from elevGainPrefArr function by elevation gain,push into distancePrefArr
+function distancePreference(value) {
+  for(var i = 0; i < elevGainPrefArr.length; i++) {
+    var hikeLat = parseFloat(elevGainPrefArr[i].lat);
+    var hikeLng = parseFloat(elevGainPrefArr[i].lng);
+    var hikeDistance = distance(codeFellowsLat, codeFellowsLng, hikeLat, hikeLng, 'M');
+    elevGainPrefArr[i].distance = hikeDistance;
+  }
+  if (value === 1) {
+    for(var j = 0; j < elevGainPrefArr.length; j++) {
+      if (elevGainPrefArr[j].distance < 20.0) {
+        distancePrefArr.push(elevGainPrefArr[j]);
+      }
+    }
+  }
+  console.log(distancePrefArr);
+}
+// console.log(distance(codeFellowsLat, codeFellowsLng, 46.0660, -118.2644, 'M'));
 
 // sort by rating
 
-
-// TEST - retrieve ratings
-function hikeRating() {
-  var counter = 0;
-  for(var i = 0; i < allHikes.length; i++) {
-    var hikeRating = parseInt(allHikes[i].rating);
-    if (hikeRating === 5.0) {
-      counter += 1;
-    }
-  }
-  console.log('# of hikes with 5.0 ratings',counter);
-}
-hikeRating();
+form.addEventListener('submit', formData);

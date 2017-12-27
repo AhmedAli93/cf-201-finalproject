@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <title>Find Hike</title>
-</head>
-<body>
-  <form id="Finder">
-    <fieldset>
-      <label for="how far">how far</label>
-      <input type="text" name="how far" placeholder="how far">
-    </fieldset>
+  <head>
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Find A Hike</title>
+  </head>
+  <body>
+    <form id="find-hike">
+      <fieldset>
+        <!--How far do you want to hike? Radio buttons:
+          0 - 5 miles, val = 1
+          5 - 10 miles, val = 2
+          10 - 15 miles, val = 3
+          15 - 20 miles, val = 4
+          20+ miles, val = 5-->
+        <label for="length">How far do you want to hike?</label>
+        <input type="radio" name="length" value="1" required>0 - 5 miles
+        <input type="radio" name="length" value="2" required>5 - 10 miles
+        <input type="radio" name="length" value="3" required>10 - 15 miles
+        <input type="radio" name="length" value="4" required>15 - 20 miles
+        <input type="radio" name="length" value="5" required>20+ miles
+      </fieldset>
+      <fieldset>
+        <!--How much elevation gain? Radio buttons:
+          Under 1000 ft, val = 1
+          1000 - 2000 ft, val = 2
+          2000 - 3000 ft, val = 3
+          3000 - 4000 ft, val = 4
+          4000+ ft, val = 5-->
+        <label for="elevation">Elevation Gain</label>
+        <input type="radio" name="elevation" value="1" required>Under 1000 ft
+        <input type="radio" name="elevation" value="2" required>1000 - 2000 ft
+        <input type="radio" name="elevation" value="3" required>2000 - 3000 ft
+        <input type="radio" name="elevation" value="4" required>3000 - 4000 ft
+        <input type="radio" name="elevation" value="5" required>4000+ ft
+      </fieldset>
 
-    <fieldset>
-      <label for="elevation">elevation</label>
-      <input type="text" name="elevation" placeholder="elevation">
-    </fieldset>
+      <fieldset>
+        <!-- Distance from Seattle form should also be radio buttons using the same value system as above -->
+        <label for="distance from seattle">distance from seattle</label>
+        <input type="range" name="distance from seattle" placeholder="distance from seattle">
+      </fieldset>
 
-    <fieldset>
-      <label for="distance from seattle">distance from seattle</label>
-      <input type="range" name="distance from seattle" placeholder="distance from seattle">
-    </fieldset>
+      <!-- Removing rating, as we decided to display results by rating. We can also add total elevation if we want later on. -->
 
-    <fieldset>
-      <label for="rating">rating</label>
-      <input type="range" name="rating" placeholder="rating">
-    </fieldset>
-
-      <p>Content...</p>
-
-  <script><link rel="app.js"></script>
-</body>
+      <button type="submit" id="submit-btn">Find a Hike</button>
+    </form>
+    <p>Content...</p>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
