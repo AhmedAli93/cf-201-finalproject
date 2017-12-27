@@ -8,10 +8,10 @@ var codeFellowsLng = -122.351871;
 
 // filled from lengthPreference function
 var lengthPrefArr = [];
-
 // filled from elevationGainPreference function
 var elevGainPrefArr = [];
-
+// filled from distancePreference function
+var distancePrefArr = [];
 
 
 // receives form data from find-hike.html
@@ -24,6 +24,8 @@ function formData(event) {
 
   lengthPreference(lengthPref);
   elevationGainPreference(elevPref);
+  // change with variable from form:
+  distancePreference(1);
 }
 
 // sorts hikes by length
@@ -70,7 +72,6 @@ function lengthPreference(value) {
       }
     }
   }
-  console.log(lengthPrefArr);
 }
 
 // TO DO: Add rest of conditional sorting statements
@@ -86,14 +87,7 @@ function elevationGainPreference(value) {
       }
     }
   }
-  console.log(elevGainPrefArr);
 }
-
-
-// sort by distance of Seattle
-//    which means we have to figure out lat/long calculation
-
-
 
 // distance calculation from http://www.geodatasource.com/developers/javascript
 // Passed to function:
@@ -103,7 +97,8 @@ function elevationGainPreference(value) {
 //    where: 'M' is statute miles (default)
 //    'K' is kilometers
 //    'N' is nautical miles
-
+// Note: this calculates the air (?) distance, NOT the driving distance
+// for that, we'd need https://developers.google.com/maps/documentation/directions/ or https://developers.google.com/maps/documentation/distance-matrix/
 function distance(lat1, lon1, lat2, lon2, unit) {
   var radlat1 = Math.PI * lat1 / 180;
   var radlat2 = Math.PI * lat2 / 180;
@@ -122,39 +117,26 @@ function distance(lat1, lon1, lat2, lon2, unit) {
   return dist;
 }
 
+// TO DO: Add rest of conditional sorting statements
+// sort results from elevGainPrefArr function by elevation gain,push into distancePrefArr
+function distancePreference(value) {
+  for(var i = 0; i < elevGainPrefArr.length; i++) {
+    var hikeLat = parseFloat(elevGainPrefArr[i].lat);
+    var hikeLng = parseFloat(elevGainPrefArr[i].lng);
+    var hikeDistance = distance(codeFellowsLat, codeFellowsLng, hikeLat, hikeLng, 'M');
+    elevGainPrefArr[i].distance = hikeDistance;
+  }
+  if (value === 1) {
+    for(var j = 0; j < elevGainPrefArr.length; j++) {
+      if (elevGainPrefArr[j].distance < 20.0) {
+        distancePrefArr.push(elevGainPrefArr[j]);
+      }
+    }
+  }
+  console.log(distancePrefArr);
+}
+// console.log(distance(codeFellowsLat, codeFellowsLng, 46.0660, -118.2644, 'M'));
+
 // sort by rating
-var hike1 = allHikes[0];
-var hike1lat = parseFloat(hike1.lat);
-var hike1lng = parseFloat(hike1.lng);
-console.log(hike1,hike1lat,hike1lng)
-
-console.log(distance(codeFellowsLat, codeFellowsLng, hike1lat, hike1lng, 'K'));
-
-
-
-
-
-
-
-
-
 
 form.addEventListener('submit', formData);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//foo
