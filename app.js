@@ -6,14 +6,42 @@ var form = document.getElementById('find-hike');
 var codeFellowsLat = 47.618248;
 var codeFellowsLng = -122.351871;
 
-// filled from lengthPreference function
+// data from lengthPreference function
 var lengthPrefArr = [];
-// filled from elevationGainPreference function
+// data from elevationGainPreference function
 var elevGainPrefArr = [];
-// filled from distancePreference function
+// data from distancePreference function
 var distancePrefArr = [];
 
+// distance calculation from http://www.geodatasource.com/developers/javascript
+// Passed to function:
+//  lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
+//  lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
+//  unit = the unit you desire for results
+//    where: 'M' is statute miles (default)
+//    'K' is kilometers
+//    'N' is nautical miles
+// Note: this calculates the air (?) distance, NOT the driving distance
+// for that, we'd need https://developers.google.com/maps/documentation/directions/ or https://developers.google.com/maps/documentation/distance-matrix/
+function distance(lat1, lon1, lat2, lon2, unit) {
+  var radlat1 = Math.PI * lat1 / 180;
+  var radlat2 = Math.PI * lat2 / 180;
+  var theta = lon1 - lon2;
+  var radtheta = Math.PI * theta / 180;
+  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist);
+  dist = dist * 180 / Math.PI;
+  dist = dist * 60 * 1.1515;
+  if (unit === 'K') {
+    dist = dist * 1.609344;
+  };
+  if (unit === 'N') {
+    dist = dist * 0.8684;
+  };
+  return dist;
+}
 
+/* INPUTS FROM FORM */
 // receives form data from find-hike.html
 function formData(event) {
   event.preventDefault();
@@ -26,8 +54,12 @@ function formData(event) {
   elevationGainPreference(elevPref);
   // change with variable from form:
   distancePreference(1);
+
+  // change windows
+  // window.location.href = 'hike-results.html';
 }
 
+/* SORTING FUNCTIONS */
 // sorts hikes by length
 function lengthPreference(value) {
   // receives hike length form data
@@ -89,34 +121,6 @@ function elevationGainPreference(value) {
   }
 }
 
-// distance calculation from http://www.geodatasource.com/developers/javascript
-// Passed to function:
-//  lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
-//  lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
-//  unit = the unit you desire for results
-//    where: 'M' is statute miles (default)
-//    'K' is kilometers
-//    'N' is nautical miles
-// Note: this calculates the air (?) distance, NOT the driving distance
-// for that, we'd need https://developers.google.com/maps/documentation/directions/ or https://developers.google.com/maps/documentation/distance-matrix/
-function distance(lat1, lon1, lat2, lon2, unit) {
-  var radlat1 = Math.PI * lat1 / 180;
-  var radlat2 = Math.PI * lat2 / 180;
-  var theta = lon1 - lon2;
-  var radtheta = Math.PI * theta / 180;
-  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-  dist = Math.acos(dist);
-  dist = dist * 180 / Math.PI;
-  dist = dist * 60 * 1.1515;
-  if (unit === 'K') {
-    dist = dist * 1.609344;
-  };
-  if (unit === 'N') {
-    dist = dist * 0.8684;
-  };
-  return dist;
-}
-
 // TO DO: Add rest of conditional sorting statements
 // sort results from elevGainPrefArr function by elevation gain,push into distancePrefArr
 function distancePreference(value) {
@@ -135,8 +139,15 @@ function distancePreference(value) {
   }
   console.log(distancePrefArr);
 }
-// console.log(distance(codeFellowsLat, codeFellowsLng, 46.0660, -118.2644, 'M'));
 
-// sort by rating
+/* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
+// Sort by rating
+
+// render main hikes
+
+// render list(s) of hikes
+
+// render error messages if no hikes are available
+
 
 form.addEventListener('submit', formData);
