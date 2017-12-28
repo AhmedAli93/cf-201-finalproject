@@ -11,14 +11,14 @@ var lengthPrefArr = [];
 // data from elevationGainPreference function
 var elevGainPrefArr = [];
 // data from distancePreference function
-var distancePrefArr = [];
+var sortedHikesArr = [];
 
 // distance calculation from http://www.geodatasource.com/developers/javascript
 // Passed to function:
 //  lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
 //  lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
 //  unit = the unit you desire for results
-//    where: 'M' is statute miles (default)
+//    'M' is statute miles (default)
 //    'K' is kilometers
 //    'N' is nautical miles
 // Note: this calculates the air (?) distance, NOT the driving distance
@@ -57,6 +57,12 @@ function formData(event) {
 
   // change windows
   // window.location.href = 'hike-results.html';
+
+  if (sortedHikesArr.length > 0) {
+    renderMainHike();
+  } else {
+    noHikes();
+  }
 }
 
 /* SORTING FUNCTIONS */
@@ -106,7 +112,6 @@ function lengthPreference(value) {
   }
 }
 
-// TO DO: Add rest of conditional sorting statements
 // sort results from lengthPreference function by elevation gain,push into elevGainPrefArr
 function elevationGainPreference(value) {
   console.log(lengthPrefArr.length);
@@ -119,10 +124,10 @@ function elevationGainPreference(value) {
       }
     }
   }
+  // TO DO: Add rest of conditional sorting statements
 }
 
-// TO DO: Add rest of conditional sorting statements
-// sort results from elevGainPrefArr function by elevation gain,push into distancePrefArr
+// sort results from elevGainPrefArr function by elevation gain,push into sortedHikesArr
 function distancePreference(value) {
   for(var i = 0; i < elevGainPrefArr.length; i++) {
     var hikeLat = parseFloat(elevGainPrefArr[i].lat);
@@ -133,21 +138,34 @@ function distancePreference(value) {
   if (value === 1) {
     for(var j = 0; j < elevGainPrefArr.length; j++) {
       if (elevGainPrefArr[j].distance < 20.0) {
-        distancePrefArr.push(elevGainPrefArr[j]);
+        sortedHikesArr.push(elevGainPrefArr[j]);
       }
     }
   }
-  console.log(distancePrefArr);
+  // TO DO: Add rest of conditional sorting statements
+
+  // Sort array of hikes by rating (highest at index 0)
+  // code from https://davidwalsh.name/array-sort
+  sortedHikesArr.sort(function(obj1, obj2) {
+    return obj2.rating - obj1.rating;
+  });
+  console.log(sortedHikesArr);
 }
 
 /* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
-// Sort by rating
-
-// render main hikes
+// render main hike (sortedHikesArr - index 0)
+function renderMainHike() {
+  var hikeName = sortedHikesArr[0].name;
+  var hikeLength = sortedHikesArr[0].length;
+  var hikeURL = 'http://www.wta.org/go-hiking/hikes/' + sortedHikesArr[0].id;
+  console.log(hikeName, hikeLength, hikeURL);
+}
 
 // render list(s) of hikes
 
-// render error messages if no hikes are available
-
+// render error messages if no hikes are available, button so user can go back?
+function noHikes() {
+  console.log('No hikes available!');
+};
 
 form.addEventListener('submit', formData);
