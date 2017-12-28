@@ -152,7 +152,7 @@ function distancePreference(value) {
   console.log(sortedHikesArr);
 }
 
-/* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
+/* DISPLAY RESULTS ON HIKE-RESULTS.HTML - should this be a separate JS file? */
 // render main hike (sortedHikesArr - index 0)
 function renderMainHike() {
   var hikeName = sortedHikesArr[0].name;
