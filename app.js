@@ -23,6 +23,9 @@ var sortedHikesArr = [];
 //    'N' is nautical miles
 // Note: this calculates the air (?) distance, NOT the driving distance
 // for that, we'd need https://developers.google.com/maps/documentation/directions/ or https://developers.google.com/maps/documentation/distance-matrix/
+// Google distance API key - AIzaSyAUD_3iUCdQBwshYSV2mxcGgxjG6xsCxag
+// Google Maps Directions API - AIzaSyD0wyQbg_YkXb1DSLCOSt2uk8BkSjmL9qQ
+// codePen reference https://codepen.io/youfoundron/pen/GIlvp
 function distance(lat1, lon1, lat2, lon2, unit) {
   var radlat1 = Math.PI * lat1 / 180;
   var radlat2 = Math.PI * lat2 / 180;
@@ -39,6 +42,35 @@ function distance(lat1, lon1, lat2, lon2, unit) {
     dist = dist * 0.8684;
   };
   return dist;
+}
+
+// from https://developers.google.com/maps/documentation/javascript/examples/distance-matrix
+// https://developers.google.com/maps/documentation/distance-matrix/intro#DirectionsResponseElements
+function googleDistance(originLat, originLng, destLat, destLng) {
+  var service = new google.maps.DistanceMatrixService();
+
+  service.getDistanceMatrix(
+    {
+      origins: [originLat, originLng],
+      // origins=41.43206,-81.38992|-33.86748,151.20699
+      destinations: [destLat, destLng],
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.IMPERIAL,
+      avoidHighways: false,
+      avoidTolls: false,
+    },
+    callback
+  );
+
+  function callback(response, status) {
+
+    if (status === 'OK') {
+      var dist = response.rows[0].elements[0].distance.text;
+      console.log(dist);
+    } else {
+      alert('Error: ' + status);
+    }
+  }
 }
 
 /* INPUTS FROM FORM */
