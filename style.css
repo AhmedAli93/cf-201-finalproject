@@ -32,7 +32,6 @@ footer div {
 }
 /* Find Hike Form */
 form {
-  border: orange 1px solid;
   width: 700px;
   margin: 10px auto;
 }
@@ -58,4 +57,5 @@ form button {
 /* About Us */
 .personal-photo {
   height: 200px;
+  border-radius: 50%
 }
