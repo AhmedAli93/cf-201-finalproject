@@ -80,12 +80,13 @@ function formData(event) {
 
   // receives value from find-hike.html form, parses value into integer
   var lengthPref = parseInt(event.target.length.value);
- var elevPref = parseInt(event.target.elevation.value);
- var distPref = parseInt(event.target.distance.value);
+  var elevPref = parseInt(event.target.elevation.value);
+  var distPref = parseInt(event.target.distance.value);
 
- lengthPreference(lengthPref);
- elevationGainPreference(elevPref);
- distancePreference(distPref);
+  lengthPreference(lengthPref);
+  elevationGainPreference(elevPref);
+  distancePreference(distPref);
+
   // change windows
   // window.location.href = 'hike-results.html';
 
@@ -145,8 +146,6 @@ function lengthPreference(value) {
 
 // sort results from lengthPreference function by elevation gain,push into elevGainPrefArr
 function elevationGainPreference(value) {
-  console.log(lengthPrefArr.length);
-
   if (value === 1) {
     for(var i = 0; i < lengthPrefArr.length; i++) {
       var elevGain = parseInt(lengthPrefArr[i].elevGain);
@@ -155,8 +154,6 @@ function elevationGainPreference(value) {
       }
     }
   }
-  // Rest of conditional sorting statements
-
   if (value === 2) {
     for(var j = 0; j < lengthPrefArr.length; j++) {
       elevGain = parseInt(lengthPrefArr[j].elevGain);
@@ -193,48 +190,47 @@ function elevationGainPreference(value) {
 
 // sort results from elevGainPrefArr function by elevation gain,push into sortedHikesArr
 function distancePreference(value) {
- for(var i = 0; i < elevGainPrefArr.length; i++) {
-   var hikeLat = parseFloat(elevGainPrefArr[i].lat);
-   var hikeLng = parseFloat(elevGainPrefArr[i].lng);
-   var hikeDistance = distance(codeFellowsLat, codeFellowsLng, hikeLat, hikeLng, 'M');
-   elevGainPrefArr[i].distance = hikeDistance;
- }
- if (value === 1) {
-   for(var j = 0; j < elevGainPrefArr.length; j++) {
-     if (elevGainPrefArr[j].distance < 25.0) {
-       sortedHikesArr.push(elevGainPrefArr[j]);
-     }
-   }
- }
- if (value === 2) {
-   for(var k = 0; k < elevGainPrefArr.length; k++) {
-     if (elevGainPrefArr[k].distance >= 25.0 && elevGainPrefArr[k].distance < 50.0) {
-       sortedHikesArr.push(elevGainPrefArr[k]);
-     }
-   }
- }
- if (value === 3) {
-   for(var l = 0; l < elevGainPrefArr.length; l++) {
-     if (elevGainPrefArr[l].distance >= 50.0 && elevGainPrefArr[l].distance < 100.0) {
-       sortedHikesArr.push(elevGainPrefArr[l]);
-     }
-   }
- }
- if (value === 4) {
-   for(var m = 0; m < elevGainPrefArr.length; m++) {
-     if (elevGainPrefArr[m].distance >= 100.0 && elevGainPrefArr[m].distance < 150.0) {
-       sortedHikesArr.push(elevGainPrefArr[m]);
-     }
-   }
- }
- if (value === 5) {
-   for(var n = 0; n < elevGainPrefArr.length; n++) {
-     if (elevGainPrefArr[n].distance >= 150) {
-       sortedHikesArr.push(elevGainPrefArr[j]);
-     }
-   }
- }
-  // TO DO: Add rest of conditional sorting statements
+  for(var i = 0; i < elevGainPrefArr.length; i++) {
+    var hikeLat = parseFloat(elevGainPrefArr[i].lat);
+    var hikeLng = parseFloat(elevGainPrefArr[i].lng);
+    var hikeDistance = distance(codeFellowsLat, codeFellowsLng, hikeLat, hikeLng, 'M');
+    elevGainPrefArr[i].distance = hikeDistance;
+  }
+  if (value === 1) {
+    for(var j = 0; j < elevGainPrefArr.length; j++) {
+      if (elevGainPrefArr[j].distance < 25.0) {
+        sortedHikesArr.push(elevGainPrefArr[j]);
+      }
+    }
+  }
+  if (value === 2) {
+    for(var k = 0; k < elevGainPrefArr.length; k++) {
+      if (elevGainPrefArr[k].distance >= 25.0 && elevGainPrefArr[k].distance < 50.0) {
+        sortedHikesArr.push(elevGainPrefArr[k]);
+      }
+    }
+  }
+  if (value === 3) {
+    for(var l = 0; l < elevGainPrefArr.length; l++) {
+      if (elevGainPrefArr[l].distance >= 50.0 && elevGainPrefArr[l].distance < 100.0) {
+        sortedHikesArr.push(elevGainPrefArr[l]);
+      }
+    }
+  }
+  if (value === 4) {
+    for(var m = 0; m < elevGainPrefArr.length; m++) {
+      if (elevGainPrefArr[m].distance >= 100.0 && elevGainPrefArr[m].distance < 150.0) {
+        sortedHikesArr.push(elevGainPrefArr[m]);
+      }
+    }
+  }
+  if (value === 5) {
+    for(var n = 0; n < elevGainPrefArr.length; n++) {
+      if (elevGainPrefArr[n].distance >= 150) {
+        sortedHikesArr.push(elevGainPrefArr[j]);
+      }
+    }
+  }
 
   // Sort array of hikes by rating (highest at index 0)
   // code from https://davidwalsh.name/array-sort
@@ -244,7 +240,7 @@ function distancePreference(value) {
   console.log(sortedHikesArr);
 }
 
-/* DISPLAY RESULTS ON HIKE-RESULTS.HTML - should this be a separate JS file? */
+/* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
 // render main hike (sortedHikesArr - index 0)
 function renderMainHike() {
   var hikeName = sortedHikesArr[0].name;
