@@ -30,3 +30,32 @@ footer div {
   width: 960px;
   margin: 0 auto;
 }
+/* Find Hike Form */
+form {
+  border: orange 1px solid;
+  width: 700px;
+  margin: 10px auto;
+}
+label {
+  display: block;
+  margin-top: 10px;
+}
+input {
+  margin: 10px 0px 20px 10px;
+}
+span {
+  margin-left: 5px;
+}
+form button {
+  border: none;
+  background: rgb(194, 194, 194);
+  border-radius: 5px;
+  padding: 10px 15px 10px 15px;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 10px 0px;
+}
+/* About Us */
+.personal-photo {
+  height: 200px;
+}
