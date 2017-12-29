@@ -88,7 +88,7 @@ function formData(event) {
   distancePreference(distPref);
 
   // change windows
-  // window.location.href = 'hike-results.html';
+  window.location.href = 'hike-results.html';
 
   if (sortedHikesArr.length > 0) {
     renderMainHike();
