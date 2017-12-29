@@ -5,6 +5,9 @@ var allHikes = JSON.parse(hikes);
 var form = document.getElementById('find-hike');
 var codeFellowsLat = 47.618248;
 var codeFellowsLng = -122.351871;
+var pathname = window.location.pathname;
+var address = pathname.split('/');
+var currentAddress = address[address.length - 1];
 
 // data from lengthPreference function
 var lengthPrefArr = [];
@@ -12,6 +15,13 @@ var lengthPrefArr = [];
 var elevGainPrefArr = [];
 // data from distancePreference function
 var sortedHikesArr = [];
+
+// call all functions depending on which page you're on
+if (currentAddress === 'find-hike.html') {
+  form.addEventListener('submit', formData);
+} else if (currentAddress === 'hike-results.html') {
+  load();
+}
 
 // distance calculation from http://www.geodatasource.com/developers/javascript
 // Passed to function:
@@ -282,5 +292,3 @@ function renderMainHike() {
 function noHikes() {
   console.log('No hikes available!');
 };
-
-form.addEventListener('submit', formData);
