@@ -86,6 +86,7 @@ function formData(event) {
   lengthPreference(lengthPref);
   elevationGainPreference(elevPref);
   distancePreference(distPref);
+  save();
 
   // change windows
   window.location.href = 'hike-results.html';
@@ -240,9 +241,21 @@ function distancePreference(value) {
   console.log(sortedHikesArr);
 }
 
+/* ADD sortedHikesArr TO LOCAL STORAGE */
+function save() {
+  localStorage.sortedHikesArr = JSON.stringify(sortedHikesArr);
+}
+
+// load array of hikes from local storage
+function load() {
+  sortedHikesArr.push(JSON.parse(localStorage.sortedHikesArr));
+}
+
 /* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
 // render main hike (sortedHikesArr - index 0)
 function renderMainHike() {
+  load();
+
   var hikeName = sortedHikesArr[0].name;
   var hikeRating = sortedHikesArr[0].rating;
   var hikeLength = sortedHikesArr[0].length;
