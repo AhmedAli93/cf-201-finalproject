@@ -39,8 +39,12 @@
 
       <fieldset>
         <!-- Distance from Seattle form should also be radio buttons using the same value system as above -->
-        <label for="distance from seattle">distance from seattle</label>
-        <input type="range" name="distance from seattle" placeholder="distance from seattle">
+        <label for="distance">distance from seattle</label>
+        <input type="radio" name="distance" value="1">0-25 miles
+        <input type="radio" name="distance" value="2">25-50 miles
+        <input type="radio" name="distance" value="3">50-100 miles
+        <input type="radio" name="distance" value="4">100-150 miles
+        <input type="radio" name="distance" value="5">150+ miles
       </fieldset>
 
       <!-- Removing rating, as we decided to display results by rating. We can also add total elevation if we want later on. -->
