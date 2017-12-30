@@ -21,6 +21,13 @@ if (currentAddress === 'find-hike.html') {
   form.addEventListener('submit', formData);
 } else if (currentAddress === 'hike-results.html') {
   load();
+  if (sortedHikesArr.length > 0) {
+    renderMainHike();
+    renderHikeList();
+  } else {
+    noHikes();
+  }
+
 }
 
 // distance calculation from http://www.geodatasource.com/developers/javascript
@@ -100,12 +107,6 @@ function formData(event) {
 
   // change windows
   window.location.href = 'hike-results.html';
-
-  if (sortedHikesArr.length > 0) {
-    renderMainHike();
-  } else {
-    noHikes();
-  }
 }
 
 /* SORTING FUNCTIONS */
@@ -258,25 +259,23 @@ function save() {
 
 // load array of hikes from local storage
 function load() {
-  sortedHikesArr.push(JSON.parse(localStorage.sortedHikesArr));
+  sortedHikesArr = JSON.parse(localStorage.sortedHikesArr);
 }
 
 /* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
 // render main hike (sortedHikesArr - index 0)
 function renderMainHike() {
-  load();
-
-  var hikeName = sortedHikesArr[0].name;
-  var hikeRating = sortedHikesArr[0].rating;
-  var hikeLength = sortedHikesArr[0].length;
-  var hikeElev = sortedHikesArr[0].elevGain;
-  var hikeURL = 'http://www.wta.org/go-hiking/hikes/' + sortedHikesArr[0].id;
-
-  var mainHikeList = document.getElementById('main-hike-ul');
-  var liEl = document.createElement('li');
-  liEl.textContent = hikeName;
-  mainHikeList.appendChild(liEl);
-
+  // var hikeName = sortedHikesArr[0].name;
+  // var hikeRating = sortedHikesArr[0].rating;
+  // var hikeLength = sortedHikesArr[0].length;
+  // var hikeElev = sortedHikesArr[0].elevGain;
+  // var hikeURL = 'http://www.wta.org/go-hiking/hikes/' + sortedHikesArr[0].id;
+  //
+  // var mainHikeList = document.getElementById('main-hike-ul');
+  // var liEl = document.createElement('li');
+  // liEl.textContent = hikeName;
+  // mainHikeList.appendChild(liEl);
+  //
   // var mainHikeName = document.getElementById('main-hike-name');
   // var mainHikeRating = document.getElementById('main-hike-rating');
   // var mainHikeLength = document.getElementById('main-hike-length');
@@ -287,7 +286,15 @@ function renderMainHike() {
 }
 
 // render list(s) of hikes
+function renderHikeList() {
+  var hikeList = document.getElementById('list-hike-ul');
 
+  for(var i = 0; i < sortedHikesArr.length; i++) {
+    var liEl = document.createElement('li');
+    liEl.innerHTML = sortedHikesArr[i].name;
+    hikeList.appendChild(liEl);
+  }
+}
 // render error messages if no hikes are available, button so user can go back?
 function noHikes() {
   console.log('No hikes available!');
