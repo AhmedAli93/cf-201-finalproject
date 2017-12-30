@@ -239,7 +239,7 @@ function distancePreference(value) {
   if (value === 5) {
     for(var n = 0; n < elevGainPrefArr.length; n++) {
       if (elevGainPrefArr[n].distance >= 150) {
-        sortedHikesArr.push(elevGainPrefArr[j]);
+        sortedHikesArr.push(elevGainPrefArr[n]);
       }
     }
   }
