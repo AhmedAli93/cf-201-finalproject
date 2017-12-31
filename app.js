@@ -265,23 +265,41 @@ function load() {
 /* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
 // render main hike (sortedHikesArr - index 0)
 function renderMainHike() {
-  // var hikeName = sortedHikesArr[0].name;
-  // var hikeRating = sortedHikesArr[0].rating;
-  // var hikeLength = sortedHikesArr[0].length;
-  // var hikeElev = sortedHikesArr[0].elevGain;
-  // var hikeURL = 'http://www.wta.org/go-hiking/hikes/' + sortedHikesArr[0].id;
-  //
-  // var mainHikeList = document.getElementById('main-hike-ul');
-  // var liEl = document.createElement('li');
-  // liEl.textContent = hikeName;
-  // mainHikeList.appendChild(liEl);
-  //
+  var hikeName = sortedHikesArr[0].name;
+  var hikeRating = sortedHikesArr[0].rating;
+  var hikeLength = sortedHikesArr[0].length;
+  var hikeElev = sortedHikesArr[0].elevGain;
+  var hikeURL = 'http://www.wta.org/go-hiking/hikes/' + sortedHikesArr[0].id;
+
+  var mainHikeList = document.getElementById('main-hike-ul');
+  var liEl = document.createElement('li');
+  liEl.textContent = 'Hike Name: ' + hikeName;
+  mainHikeList.appendChild(liEl);
+
+  var liEl = document.createElement('li');
+  liEl.textContent = 'Rating: ' + hikeRating;
+  mainHikeList.appendChild(liEl);
+
+  var liEl = document.createElement('li');
+  liEl.textContent = 'Length: ' + hikeLength + ' miles';
+  mainHikeList.appendChild(liEl);
+
+  var liEl = document.createElement('li');
+  liEl.textContent = 'Elevation: ' + hikeElev;
+  mainHikeList.appendChild(liEl);
+
+  var liEl = document.createElement('li');
+  liEl.textContent = 'Read more on the WTA Website: ' + hikeURL;
+  mainHikeList.appendChild(liEl);
+
+
+
   // var mainHikeName = document.getElementById('main-hike-name');
   // var mainHikeRating = document.getElementById('main-hike-rating');
   // var mainHikeLength = document.getElementById('main-hike-length');
   // var mainHikeElev = document.getElementById('main-hike-elev');
   // var mainHikeURL = document.getElementById('')
-
+  //
   // console.log(hikeName, hikeLength, hikeURL, hikeElev, hikeRating);
 }
 
