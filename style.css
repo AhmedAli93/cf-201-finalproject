@@ -54,6 +54,10 @@ form button {
   font-weight: bold;
   margin: 10px 0px;
 }
+/* Hike Results */
+#list-hike {
+  margin-top: 15px;
+}
 /* About Us */
 .personal-photo {
   height: 200px;
