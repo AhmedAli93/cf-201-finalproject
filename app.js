@@ -303,11 +303,11 @@ function renderMainHike() {
   // console.log(hikeName, hikeLength, hikeURL, hikeElev, hikeRating);
 }
 
-// render list(s) of hikes
+// render list of hikes
 function renderHikeList() {
   var hikeList = document.getElementById('list-hike-ul');
 
-  for(var i = 0; i < sortedHikesArr.length; i++) {
+  for(var i = 1; i < sortedHikesArr.length; i++) {
     var liEl = document.createElement('li');
     liEl.innerHTML = sortedHikesArr[i].name;
     hikeList.appendChild(liEl);
