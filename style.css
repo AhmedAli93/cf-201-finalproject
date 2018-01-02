@@ -30,13 +30,37 @@ header li:first-child {
   margin-top: 15px;
   font-family: Lobster;
 }
+.hero-image {
+  background-image: url("img/img2.jpg");
+  width: 960px;
+  position: relative;
+}
+/* .main-photo{
+  position: relative;
+  width: 960px;
+} */
+
+#main-button {
+  background-color: #E1E9F4;
+  color: #243E5A;
+  font-family: Raleway;
+  font-size: 20px;
+  border-radius: 20px;
+  padding: 15px 30px;
+  position: absolute;
+  margin-top: 50%;
+  margin-right: 50%;
+}
+
 main {
   width: 960px;
   margin: 0 auto;
 }
 .index-content-1, .index-content-2 {
+  margin-top: 20px;
   border: purple dashed 1px;
   width: 475px;
+  font-family: Raleway;
 }
 .index-content-1 {
   float: left;
@@ -116,10 +140,11 @@ li span {
   margin-right: 40px;
   margin-bottom: 20px;
 }
-.main-photo{
-  width: 960px;
-}
 
 .about-us {
   background-color: #E1E9F4;
+}
+
+.bios {
+  font-family: Raleway;
 }
