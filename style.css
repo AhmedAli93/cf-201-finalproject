@@ -147,4 +147,7 @@ li span {
 
 .bios {
   font-family: Raleway;
+  position: absolute;
+  left: 375px;
+  margin-top: -110px;
 }
