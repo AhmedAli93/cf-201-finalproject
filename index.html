@@ -6,9 +6,21 @@
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Raleway:300,400">
-
   </head>
   <body>
+    <section class="background">
+        <div class="air-slider">
+          <div class="slide">
+            <img src="img/img1.jpg" alt="slide1"/>
+          </div>
+          <div class="slide">
+            <img src="img/img4.jpg" alt="slide2"/>
+          </div>
+          <div class="slide">
+            <img src="img/img5.jpg" alt="slide3"/>
+          </div>
+        </div>
+      </section>
     <header>
       <div>
         <ul>
@@ -20,30 +32,15 @@
       </div>
     </header>
     <main>
-
-      <div class="air-slider">
-        <div class="slide">
-          <img src="img/img1.jpg" alt="slide1"/>
+      <div class="main-body">
+        <div class="column-1"></div>
+        <div class="transparent-div">
+          <p>Search for hikes based on your preferences:</p>
+          <a href="find-hike.html"><button id="main-button">Find A Hike</button></a>
         </div>
-        <div class="slide">
-          <img src="img/img2.jpg" alt="slide2"/>
-        </div>
-        <div class="slide">
-          <img src="img/img3.jpg" alt="slide3"/>
-        </div>
-     </div>
-
-
-
-      <div class="hero-image">
-        <!-- <img class="main-photo" src="img/img2.jpg"> -->
-          <a href="find-hike.html"><button id="main-button">Find a hike</button></a>
+        <div class="column-2"></div>
       </div>
-
     </main>
-    <footer>
-      <div></div>
-    </footer>
     <script src="data.js"></script>
     <script src="app.js"></script>
     <script src="vendor/air-slider.min.js"></script>
