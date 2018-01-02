@@ -1,5 +1,5 @@
 header {
-  background-color: #999;
+  background-color: #243E5A;
   height: 75px;
 }
 header div {
@@ -12,11 +12,23 @@ header li {
   margin-top: 30px;
   margin-right: 25px;
   font-size: 20px;
+  color: #E1E9F4;
+}
+header li a {
+  color: #E1E9F4;
+  text-decoration: none;
+  font-family: Raleway;
+  font-weight: 400;
+  transition: 350ms all;
+}
+header li a:hover {
+  color: #779DC2;
 }
 header li:first-child {
   float: left;
-  font-size: 30px;
-  margin-top: 20px;
+  font-size: 40px;
+  margin-top: 15px;
+  font-family: Lobster;
 }
 main {
   width: 960px;
