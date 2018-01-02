@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Take A Hike</title>
+    <link rel="stylesheet" href="vendor/air-slider.min.css">
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster|Raleway:300,400">
@@ -19,22 +20,33 @@
       </div>
     </header>
     <main>
+
+      <div class="air-slider">
+        <div class="slide">
+          <img src="img/img1.jpg" alt="slide1"/>
+        </div>
+        <div class="slide">
+          <img src="img/img-2.jpg" alt="slide2"/>
+        </div>
+        <div class="slide">
+          <img src="img/img-3.jpg" alt="slide3"/>
+        </div>
+     </div>
+
+
+
       <div class="hero-image">
         <!-- <img class="main-photo" src="img/img2.jpg"> -->
           <a href="find-hike.html"><button id="main-button">Find a hike</button></a>
       </div>
-      <div class="bottom-containers">
-        <div class="index-content-1">
-          <p>New to hiking? Watch this video from the Washington Trails Association!</p>
-          <iframe src="https://www.youtube.com/embed/TV_VuXKorDU" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div class="index-content-2"><p>&quot;In all things of nature, there is something of the marvelous.&quot; -Aristotle</p></div>
-      </div>
+
     </main>
     <footer>
       <div></div>
     </footer>
     <script src="data.js"></script>
     <script src="app.js"></script>
+    <script src="vendor/air-slider.min.js"></script>
+    <script src="slider.js"></script>
   </body>
 </html>
