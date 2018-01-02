@@ -61,10 +61,13 @@ form button {
 /* About Us */
 .personal-photo {
   height: 200px;
-  border-radius: 50%
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-right: 40px;
+  margin-bottom: 20px;
 }
 .main-photo{
   height: 300px;
   width: 960px;
-  
+
 }
