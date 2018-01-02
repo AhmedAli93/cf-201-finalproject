@@ -52,7 +52,7 @@ iframe {
 }
 footer {
   clear:both;
-  background-color: #999;
+  background-color: #243E5A;
   height: 75px;
 }
 footer div {
@@ -97,4 +97,8 @@ form button {
 }
 .main-photo{
   width: 960px;
+}
+
+.about-us {
+  background-color: #E1E9F4;
 }
