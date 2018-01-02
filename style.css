@@ -63,10 +63,14 @@ footer div {
 form {
   width: 700px;
   margin: 10px auto;
+  font-family: Raleway;
 }
 label {
   display: block;
   margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 18px;
 }
 input {
   margin: 10px 0px 20px 10px;
@@ -76,16 +80,33 @@ span {
 }
 form button {
   border: none;
-  background: rgb(194, 194, 194);
   border-radius: 5px;
   padding: 10px 15px 10px 15px;
   font-size: 12px;
   font-weight: bold;
   margin: 10px 0px;
+  color: #243E5A;
+  background-color: #E1E9F4;
 }
 /* Hike Results */
 #list-hike {
   margin-top: 15px;
+  margin-bottom: 15px;
+}
+li a {
+  text-decoration: none;
+  color: #243E5A;
+  transition: 350ms all;
+}
+li a:hover {
+color: #779DC2;
+}
+.hike-list-li {
+  margin-top: 10px;
+  font-family: Raleway;
+}
+li span {
+  font-weight:bold;
 }
 /* About Us */
 .personal-photo {
