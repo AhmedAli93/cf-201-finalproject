@@ -8,6 +8,9 @@ var codeFellowsLng = -122.351871;
 var pathname = window.location.pathname;
 var address = pathname.split('/');
 var currentAddress = address[address.length - 1];
+Image.allImages = [];
+
+
 
 // data from lengthPreference function
 var lengthPrefArr = [];
@@ -27,8 +30,43 @@ if (currentAddress === 'find-hike.html') {
   } else {
     noHikes();
   }
-
 }
+
+function Image(filepath) {
+  this.filepath = filepath;
+  Image.allImages.push(this);
+}
+
+function allNewImages() {
+  new Image ('img1.jpg');
+  new Image ('img2.jpg');
+  new Image ('img3.jpg');
+  new Image ('img4.jpg');
+  new Image ('img5.jpg');
+  new Image ('img6.jpg');
+  new Image ('img7.jpg');
+  new Image ('img8.jpg');
+  new Image ('img9.jpg');
+  new Image ('img10.jpg');
+  new Image ('img11.jpg');
+  new Image ('img12.jpg');
+}
+allNewImages();
+
+function generateRandomImg() {
+  var index = Math.floor(Math.random() * (Image.allImages.length));
+  var randomImg = Image.allImages[index];
+  return randomImg;
+}
+
+var chosenImg = generateRandomImg();
+
+function renderImage() {
+  var displayImage = document.getElementById('random-image');
+  displayImage.setAttribute('src', 'img/' + chosenImg.filepath);
+}
+
+renderImage();
 
 // distance calculation from http://www.geodatasource.com/developers/javascript
 // Passed to function:
