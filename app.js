@@ -19,20 +19,6 @@ var elevGainPrefArr = [];
 // data from distancePreference function
 var sortedHikesArr = [];
 
-// call all functions depending on which page you're on
-if (currentAddress === 'find-hike.html') {
-  getLocation();
-  form.addEventListener('submit', formData);
-} else if (currentAddress === 'hike-results.html') {
-  load();
-  if (sortedHikesArr.length > 0) {
-    renderMainHike();
-    renderHikeList();
-  } else {
-    noHikes();
-  }
-}
-
 function Image(filepath) {
   this.filepath = filepath;
   Image.allImages.push(this);
@@ -62,7 +48,21 @@ function renderImage() {
   displayImage.setAttribute('src', 'img/' + chosenImg.filepath);
 }
 
-renderImage();
+// call all functions depending on which page you're on
+if (currentAddress === 'find-hike.html') {
+  getLocation();
+  form.addEventListener('submit', formData);
+} else if (currentAddress === 'hike-results.html') {
+  load();
+  renderImage();
+  renderBGImage();
+  if (sortedHikesArr.length > 0) {
+    renderMainHike();
+    renderHikeList();
+  } else {
+    noHikes();
+  }
+}
 
 //from https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
 function getLocation() {
@@ -289,6 +289,11 @@ function load() {
 }
 
 /* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
+function renderBGImage() {
+  document.getElementById('hike-results').style.backgroundImage = 'url(img/' + chosenImg.filepath + ')';
+  document.getElementById('hike-results').style.width = '100%';
+}
+
 // render main hike (sortedHikesArr - index 0)
 function renderMainHike() {
   var hikeName = sortedHikesArr[0].name;
@@ -325,6 +330,7 @@ function renderHikeList() {
 
   for(var i = 1; i < 11; i++) {
     var hikeURL = 'http://www.wta.org/go-hiking/hikes/' + sortedHikesArr[i].id;
+    console.log(sortedHikesArr[i].id,hikeURL);
 
     var liEl = document.createElement('li');
     liEl.innerHTML = '<span><a href="' + hikeURL + '">' + sortedHikesArr[i].name + '</a></span>' + ', ' + sortedHikesArr[i].rating + ' rating, ' + sortedHikesArr[i].length + ' miles, ' + sortedHikesArr[i].elevGain + ' ft. elevation gain';
