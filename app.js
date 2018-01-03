@@ -5,12 +5,12 @@ var allHikes = JSON.parse(hikes);
 var form = document.getElementById('find-hike');
 var codeFellowsLat = 47.618248;
 var codeFellowsLng = -122.351871;
+var currentLocationLat;
+var currentLocationLng;
 var pathname = window.location.pathname;
 var address = pathname.split('/');
 var currentAddress = address[address.length - 1];
 Image.allImages = [];
-
-
 
 // data from lengthPreference function
 var lengthPrefArr = [];
@@ -19,30 +19,12 @@ var elevGainPrefArr = [];
 // data from distancePreference function
 var sortedHikesArr = [];
 
-// call all functions depending on which page you're on
-if (currentAddress === 'find-hike.html') {
-  form.addEventListener('submit', formData);
-} else if (currentAddress === 'hike-results.html') {
-  load();
-  if (sortedHikesArr.length > 0) {
-    renderMainHike();
-    renderHikeList();
-  } else {
-    noHikes();
-  }
-}
-
 function Image(filepath) {
   this.filepath = filepath;
   Image.allImages.push(this);
 }
 
 function allNewImages() {
-  new Image ('img1.jpg');
-  new Image ('img2.jpg');
-  new Image ('img3.jpg');
-  new Image ('img4.jpg');
-  new Image ('img5.jpg');
   new Image ('img6.jpg');
   new Image ('img7.jpg');
   new Image ('img8.jpg');
@@ -66,7 +48,34 @@ function renderImage() {
   displayImage.setAttribute('src', 'img/' + chosenImg.filepath);
 }
 
-renderImage();
+// call all functions depending on which page you're on
+if (currentAddress === 'find-hike.html') {
+  getLocation();
+  form.addEventListener('submit', formData);
+} else if (currentAddress === 'hike-results.html') {
+  load();
+  // renderImage();
+  renderBGImage();
+  if (sortedHikesArr.length > 0) {
+    renderMainHike();
+    renderHikeList();
+  } else {
+    noHikes();
+  }
+}
+
+//from https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation
+function getLocation() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      currentLocationLat = position.coords.latitude;
+      currentLocationLng = position.coords.longitude;
+      console.log('Lat/lng loaded:',currentLocationLat,currentLocationLng);
+    });
+  } else {
+    console.log('No user lat/lng - use CodeFellows lat/lng');
+  }
+}
 
 // distance calculation from http://www.geodatasource.com/developers/javascript
 // Passed to function:
@@ -76,11 +85,7 @@ renderImage();
 //    'M' is statute miles (default)
 //    'K' is kilometers
 //    'N' is nautical miles
-// Note: this calculates the air (?) distance, NOT the driving distance
-// for that, we'd need https://developers.google.com/maps/documentation/directions/ or https://developers.google.com/maps/documentation/distance-matrix/
-// Google distance API key - AIzaSyAUD_3iUCdQBwshYSV2mxcGgxjG6xsCxag
-// Google Maps Directions API - AIzaSyD0wyQbg_YkXb1DSLCOSt2uk8BkSjmL9qQ
-// codePen reference https://codepen.io/youfoundron/pen/GIlvp
+// Note: this calculates the point to point distance, NOT the driving distance
 function distance(lat1, lon1, lat2, lon2, unit) {
   var radlat1 = Math.PI * lat1 / 180;
   var radlat2 = Math.PI * lat2 / 180;
@@ -97,35 +102,6 @@ function distance(lat1, lon1, lat2, lon2, unit) {
     dist = dist * 0.8684;
   };
   return dist;
-}
-
-// from https://developers.google.com/maps/documentation/javascript/examples/distance-matrix
-// https://developers.google.com/maps/documentation/distance-matrix/intro#DirectionsResponseElements
-function googleDistance(originLat, originLng, destLat, destLng) {
-  var service = new google.maps.DistanceMatrixService();
-
-  service.getDistanceMatrix(
-    {
-      origins: [originLat, originLng],
-      // origins=41.43206,-81.38992|-33.86748,151.20699
-      destinations: [destLat, destLng],
-      travelMode: google.maps.TravelMode.DRIVING,
-      unitSystem: google.maps.UnitSystem.IMPERIAL,
-      avoidHighways: false,
-      avoidTolls: false,
-    },
-    callback
-  );
-
-  function callback(response, status) {
-
-    if (status === 'OK') {
-      var dist = response.rows[0].elements[0].distance.text;
-      console.log(dist);
-    } else {
-      alert('Error: ' + status);
-    }
-  }
 }
 
 /* INPUTS FROM FORM */
@@ -240,12 +216,24 @@ function elevationGainPreference(value) {
 
 // sort results from elevGainPrefArr function by elevation gain,push into sortedHikesArr
 function distancePreference(value) {
-  for(var i = 0; i < elevGainPrefArr.length; i++) {
-    var hikeLat = parseFloat(elevGainPrefArr[i].lat);
-    var hikeLng = parseFloat(elevGainPrefArr[i].lng);
-    var hikeDistance = distance(codeFellowsLat, codeFellowsLng, hikeLat, hikeLng, 'M');
-    elevGainPrefArr[i].distance = hikeDistance;
+  if (currentLocationLat) {
+    for(var h = 0; h < elevGainPrefArr.length; h++) {
+      var hikeLat = parseFloat(elevGainPrefArr[h].lat);
+      var hikeLng = parseFloat(elevGainPrefArr[h].lng);
+      var hikeDistance = distance(currentLocationLat, currentLocationLng, hikeLat, hikeLng, 'M');
+      elevGainPrefArr[h].distance = hikeDistance;
+      console.log('User Location',hikeDistance);
+    }
+  } else {
+    for(var i = 0; i < elevGainPrefArr.length; i++) {
+      hikeLat = parseFloat(elevGainPrefArr[i].lat);
+      hikeLng = parseFloat(elevGainPrefArr[i].lng);
+      hikeDistance = distance(codeFellowsLat, codeFellowsLng, hikeLat, hikeLng, 'M');
+      elevGainPrefArr[i].distance = hikeDistance;
+      console.log('Code Fellows',hikeDistance);
+    }
   }
+
   if (value === 1) {
     for(var j = 0; j < elevGainPrefArr.length; j++) {
       if (elevGainPrefArr[j].distance < 25.0) {
@@ -301,6 +289,11 @@ function load() {
 }
 
 /* DISPLAY RESULTS ON HIKE-RESULTS.HTML */
+function renderBGImage() {
+  document.getElementById('hike-results').style.backgroundImage = 'url(img/' + chosenImg.filepath + ')';
+  document.getElementById('hike-results').style.width = '100%';
+}
+
 // render main hike (sortedHikesArr - index 0)
 function renderMainHike() {
   var hikeName = sortedHikesArr[0].name;
@@ -337,6 +330,7 @@ function renderHikeList() {
 
   for(var i = 1; i < 11; i++) {
     var hikeURL = 'http://www.wta.org/go-hiking/hikes/' + sortedHikesArr[i].id;
+    console.log(sortedHikesArr[i].id,hikeURL);
 
     var liEl = document.createElement('li');
     liEl.innerHTML = '<span><a href="' + hikeURL + '">' + sortedHikesArr[i].name + '</a></span>' + ', ' + sortedHikesArr[i].rating + ' rating, ' + sortedHikesArr[i].length + ' miles, ' + sortedHikesArr[i].elevGain + ' ft. elevation gain';
