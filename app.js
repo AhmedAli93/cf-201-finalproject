@@ -40,7 +40,6 @@ function Image(filepath) {
 function allNewImages() {
   new Image ('img1.jpg');
   new Image ('img2.jpg');
-  new Image ('img3.jpg');
   new Image ('img4.jpg');
   new Image ('img5.jpg');
   new Image ('img6.jpg');
