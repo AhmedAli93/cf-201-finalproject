@@ -16,15 +16,15 @@ header {
   z-index: 2;
 }
 header div {
-  width: 960px;
+  width: 1200px;
   margin: 0 auto;
 }
 header li {
   display: inline-block;
   float: right;
-  margin-top: 40px;
+  margin-top: 35px;
   margin-right: 25px;
-  font-size: 20px;
+  font-size: 30px;
   color: #E1E9F4;
 }
 header li a {
@@ -39,8 +39,8 @@ header li a:hover {
 }
 header li:first-child {
   float: left;
-  font-size: 40px;
-  margin-top: 25px;
+  font-size: 50px;
+  margin-top: 20px;
   font-family: Lobster;
 }
 main {
@@ -248,11 +248,11 @@ li span {
   background-color: #243E5A;
 }
 .about-us-header div {
-  width: 960px;
+  width: 1200px;
   margin: 0 auto;
 }
 .personal-photo {
-  height: 150px;
+  height: 200px;
   border-radius: 50%;
   margin: 0 auto;
 }
@@ -265,16 +265,15 @@ li span {
 }
 .about-us-section {
   display: inline-block;
-  margin-top: 5px;
+  margin-top: 23px;
 }
-.about-us-section:first-child {
-  display: inline-block;
-  margin-top: 15px;
+.about-us-section:last-child {
+  margin-bottom: 20px;
 }
 h4 {
   font-family: Raleway;
   font-weight: bold;
-  font-size: 17px;
+  font-size: 20px;
   margin-top: 20px;
   margin-bottom: 10px;
 }
@@ -289,4 +288,11 @@ h4 {
 }
 .controls button{
   display: none;
+}
+.bio-div p {
+  font-size: 17px;
+}
+.logo {
+  margin-top: 8px;
+  margin-right: 5px
 }
