@@ -327,7 +327,7 @@ function renderMainHike() {
   mainHikeList.appendChild(liEl);
 
   liEl = document.createElement('li');
-  liEl.textContent = 'Read more on the WTA Website: ' + hikeURL;
+  liEl.innerHTML = 'Read more on the WTA Website: <span><a href="' + hikeURL + '">' + hikeURL + '</span></a>';
   mainHikeList.appendChild(liEl);
 }
 
