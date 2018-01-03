@@ -266,3 +266,6 @@ h4 {
   display: inline;
   font-family: Raleway;
 }
+.controls button{
+  display: none;
+}
