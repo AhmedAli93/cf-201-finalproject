@@ -19,7 +19,7 @@ header div {
 header li {
   display: inline-block;
   float: right;
-  margin-top: 30px;
+  margin-top: 40px;
   margin-right: 25px;
   font-size: 20px;
   color: #E1E9F4;
@@ -37,7 +37,7 @@ header li a:hover {
 header li:first-child {
   float: left;
   font-size: 40px;
-  margin-top: 15px;
+  margin-top: 25px;
   font-family: Lobster;
 }
 main {
@@ -94,14 +94,42 @@ footer div {
   margin: 0 auto;
 }*/
 /* Find Hike Form */
+.find-hike {
+  background-image: url('img/img2.jpg');
+  background-size: cover;
+  height: 70vh;
+}
+.find-hike-column-1 {
+  display: inline-block;
+  width: 20%;
+  float: left;
+  height: 50px;
+}
+/* found opacity tricks from https://css-tricks.com/almanac/properties/o/opacity/ */
+.find-hike-div {
+  display: inline-block;
+  color: #000000; background: rgba(255, 255, 255, 0.9);
+  height: auto;
+  width: 60%;
+  margin-top: 5%;
+  padding: 20px 10px;
+}
+.find-hike-column-2 {
+  display: inline-block;
+  width: 20%;
+  float: right;
+  height: 50px;
+}
+.dark-header {
+  color: #243E5A;
+}
 form {
-  width: 700px;
-  margin: 10px auto;
   font-family: Raleway;
+  text-align: center;
 }
 label {
   display: block;
-  margin-top: 10px;
+  margin-top: 15px;
   margin-bottom: 5px;
   font-weight: bold;
   font-size: 18px;
@@ -116,11 +144,12 @@ form button {
   border: none;
   border-radius: 5px;
   padding: 10px 15px 10px 15px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   margin: 10px 0px;
-  color: #243E5A;
-  background-color: #E1E9F4;
+  width: 30%;
+  color: #E1E9F4;
+  background-color: #243E5A;
 }
 /* Hike Results */
 #list-hike {
@@ -143,21 +172,46 @@ li span {
   font-weight:bold;
 }
 /* About Us */
+.about-us-header {
+  background-color: #243E5A;
+}
+.about-us-header div {
+  width: 960px;
+  margin: 0 auto;
+}
 .personal-photo {
   height: 150px;
   border-radius: 50%;
-  margin-top: 20px;
-  margin-right: 40px;
-  margin-bottom: 20px;
+  margin: 0 auto;
 }
-
 .about-us {
   background-color: #E1E9F4;
 }
-
-.bios {
+.about-us main {
+  width: 960px;
+  margin: 0 auto;
+}
+.about-us-section {
+  display: inline-block;
+  margin-top: 5px;
+}
+.about-us-section:first-child {
+  display: inline-block;
+  margin-top: 15px;
+}
+h4 {
   font-family: Raleway;
-  position: absolute;
-  left: 375px;
-  margin-top: -110px;
+  font-weight: bold;
+  font-size: 17px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.photo-div {
+  margin-right: 15px;
+  display: inline-block;
+  float: left;
+}
+.bio-div {
+  display: inline;
+  font-family: Raleway;
 }
