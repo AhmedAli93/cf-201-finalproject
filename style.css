@@ -156,6 +156,9 @@ form button {
 
 }
 /* Hike Results */
+.hike-results-body {
+  margin: 5 auto;
+}
 #main-hike {
   font-family: Raleway;
   display: inline-block;
@@ -179,6 +182,7 @@ form button {
   z-index: 0;
   width: 100%;
   position: absolute;
+  margin-top: 60px;
 }
 .transparent-box {
   display: inline-block;
@@ -192,6 +196,13 @@ form button {
   z-index: 99;
 }
 
+#main-hike-header {
+  font-weight: bolder;
+  font-size: 20px;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
 .main-hike-text {
   z-index: 100;
   margin: 0 auto;
@@ -202,10 +213,15 @@ form button {
 
 #list-hike {
   display: inline-block;
-  width: 50%;
+  width: 750px;
   z-index: 1;
   float: right;
-
+  padding-top: 110px;
+  padding-right: 30px;
+}
+#list-hike-ul {
+  line-height: 25px;
+  font-size: 18px;
 }
 li a {
   text-decoration: none;
