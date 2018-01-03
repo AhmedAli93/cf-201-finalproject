@@ -54,7 +54,7 @@ if (currentAddress === 'find-hike.html') {
   form.addEventListener('submit', formData);
 } else if (currentAddress === 'hike-results.html') {
   load();
-  renderImage();
+  // renderImage();
   renderBGImage();
   if (sortedHikesArr.length > 0) {
     renderMainHike();
