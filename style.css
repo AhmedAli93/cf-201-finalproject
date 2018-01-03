@@ -1,3 +1,6 @@
+* {
+  outline: 1px dashed orange;
+}
 body {
   position: relative;
 }
@@ -152,9 +155,56 @@ form button {
   background-color: #243E5A;
 }
 /* Hike Results */
+#main-hike {
+  font-family: Raleway;
+  display: inline-block;
+  width: 50%;
+  align: left;
+  color: #000000; background: rgba(255, 255, 255, 0.8);
+
+  /* height: auto; */
+}
+/* #main-hike-ul, #main-hike-header {
+    z-index: 1;
+    margin-top: 100px;
+} */
+
+#main-hike {
+  position: relative;
+  z-index: 0;
+}
+
+#random-image {
+  z-index: 0;
+  width: 100%;
+  position: absolute;
+}
+.transparent-box {
+  display: inline-block;
+  color: #000000; background: rgba(255, 255, 255, 0.8);
+  width: 70%;
+  height: 50%;
+  margin-top: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
+  position: relative;
+  z-index: 99;
+}
+
+.main-hike-text {
+  z-index: 100;
+  margin: 0 auto;
+  padding: 20px 15px;
+  position: relative;
+}
+
+
 #list-hike {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  display: inline-block;
+  width: 50%;
+  z-index: 1;
+  float: right;
+
 }
 li a {
   text-decoration: none;
