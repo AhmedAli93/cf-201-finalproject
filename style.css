@@ -74,6 +74,7 @@ main {
   font-family: Raleway;
   font-weight: bold;
   text-align: center;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 #main-button {
@@ -135,13 +136,14 @@ label {
   margin-top: 15px;
   margin-bottom: 5px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 25px;
 }
 input {
   margin: 10px 0px 20px 10px;
 }
 span {
   margin-left: 5px;
+  font-size: 20px;
 }
 form button {
   border: none;
@@ -149,7 +151,7 @@ form button {
   background-color: #243E5A;
   color: #FFF;
   font-family: Raleway;
-  font-size: 18px;
+  font-size: 25px;
   padding: 15px 15px;
   width: 60%;
   margin: 2% 10%;
@@ -183,7 +185,7 @@ form button {
 }
 #main-hike-header {
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 25px;
   text-decoration: underline;
   margin-bottom: 10px;
 }
@@ -195,6 +197,7 @@ form button {
   margin: 0 auto;
   padding: 20px 15px;
   position: relative;
+  font-size: 20px;
 }
 .transparent-box2 {
   /* display: inline-block; */
@@ -209,7 +212,6 @@ form button {
   position: relative;
   z-index: 99;
 }
-
 #list-hike {
   /* width: 70%; */
   z-index: 1;
@@ -220,7 +222,7 @@ form button {
 #list-hike-header {
   font-family: Raleway;
   font-weight: bolder;
-  font-size: 20px;
+  font-size: 25px;
   text-decoration: underline;
   padding-top: 15px;
   padding-left: 15px;
@@ -229,7 +231,7 @@ form button {
 }
 #list-hike-ul {
   line-height: 25px;
-  font-size: 16px;
+  font-size: 20px;
   margin: 0 auto;
   padding-left: 15px;
   padding-bottom: 15px;
@@ -320,19 +322,19 @@ h4 {
   background-color: #243E5A;
 }
 #message{
-  font-size: 20px;
-  margin-left: 35%;
-  margin-top: 15%;
-  margin-bottom: 10px;
+  font-size: 25px;
+  margin: 15% auto;
+  margin-bottom: 5%;
   font-family: Raleway;
+  text-align: center;
 }
 .button-message{
   font-size: 20px;
-  margin-left: 40%;
+  margin: 0% 40% 5% 40.5%;
   background-color: #243E5A;
-  border: none;
   color: white;
   padding: 20px 35px;
+  width: 15%;
   text-align: center;
   text-decoration: none;
   display: inline-block;
