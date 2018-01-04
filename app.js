@@ -120,7 +120,11 @@ function formData(event) {
   save();
 
   // change windows
-  window.location.href = 'hike-results.html';
+  if(sortedHikesArr.length) {
+    window.location.href = 'hike-results.html';
+  }else{
+    window.location.href = 'no-results.html';
+  }
 }
 
 /* SORTING FUNCTIONS */
