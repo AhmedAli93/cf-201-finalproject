@@ -153,7 +153,6 @@ form button {
   padding: 15px 15px;
   width: 60%;
   margin: 2% 10%;
-
 }
 /* Hike Results */
 #hike-results {
@@ -172,11 +171,12 @@ form button {
 }
 .transparent-box {
   /* display: inline-block; */
-  color: #000000; background: rgba(255, 255, 255, 0.8);
-  width: 700px;
+  color: #000000; background: rgba(255, 255, 255, 0.9);
+  width: 60%;
   /* height: 50%; */
-  margin-top: 200px;
-  margin-left: 25%;
+  margin-top: 30px;
+  margin-left: 20%;
+  margin-right: 20%;
   /* margin: auto; */
   position: relative;
   z-index: 99;
@@ -198,11 +198,12 @@ form button {
 .transparent-box2 {
   /* display: inline-block; */
   color: #000000; background: rgba(255, 255, 255, 0.8);
-  width: 700px;
+  width: 60%;
   /* height: 50%; */
   /* margin-top: 50px; */
-  margin-top: 50px;
-  margin-left: 24.1%;
+  margin-top: 25px;
+  margin-left: 20%;
+  margin-right: 20%;
   /* margin-right: 10%; */
   position: relative;
   z-index: 99;
@@ -213,8 +214,7 @@ form button {
   z-index: 1;
   margin: 0 auto;
   margin-top: 20px;
-  padding-left: 20px;
-  margin-bottom: 200px;
+  margin-bottom: 50px;
 }
 #list-hike-header {
   font-family: Raleway;
@@ -228,7 +228,7 @@ form button {
 }
 #list-hike-ul {
   line-height: 25px;
-  font-size: 18px;
+  font-size: 16px;
   margin: 0 auto;
   padding-left: 15px;
   padding-bottom: 15px;
