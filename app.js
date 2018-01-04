@@ -31,7 +31,7 @@ function allNewImages() {
   new Image ('img9.jpg');
   new Image ('img10.jpg');
   new Image ('img11.jpg');
-  new Image ('img12.jpg');
+  new Image ('img14.jpg');
 }
 allNewImages();
 
