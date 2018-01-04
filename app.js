@@ -316,7 +316,7 @@ function renderMainHike() {
   mainHikeList.appendChild(liEl);
 
   liEl = document.createElement('li');
-  liEl.textContent = 'Elevation: ' + hikeElev;
+  liEl.textContent = 'Elevation Gain: ' + hikeElev + ' ft.';
   mainHikeList.appendChild(liEl);
 
   liEl = document.createElement('li');
