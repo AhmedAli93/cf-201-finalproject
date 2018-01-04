@@ -181,14 +181,15 @@ form button {
   position: relative;
   z-index: 99;
 }
-
 #main-hike-header {
   font-weight: bolder;
   font-size: 20px;
   text-decoration: underline;
   margin-bottom: 10px;
 }
-
+#main-hike-ul li {
+  margin-top: 5px;
+}
 .main-hike-text {
   z-index: 100;
   margin: 0 auto;
@@ -197,7 +198,7 @@ form button {
 }
 .transparent-box2 {
   /* display: inline-block; */
-  color: #000000; background: rgba(255, 255, 255, 0.8);
+  color: #000000; background: rgba(255, 255, 255, 0.9);
   width: 60%;
   /* height: 50%; */
   /* margin-top: 50px; */

@@ -320,7 +320,7 @@ function renderMainHike() {
   mainHikeList.appendChild(liEl);
 
   liEl = document.createElement('li');
-  liEl.innerHTML = 'Read more on the WTA Website: <span><a href="' + hikeURL + '">' + hikeURL + '</span></a>';
+  liEl.innerHTML = 'Read more on the WTA Website: <span><a href="' + hikeURL + '" target="_blank">' + hikeURL + '</span></a>';
   mainHikeList.appendChild(liEl);
 }
 
@@ -333,7 +333,7 @@ function renderHikeList() {
     console.log(sortedHikesArr[i].id,hikeURL);
 
     var liEl = document.createElement('li');
-    liEl.innerHTML = '<span><a href="' + hikeURL + '">' + sortedHikesArr[i].name + '</a></span>' + ', ' + sortedHikesArr[i].rating + ' rating, ' + sortedHikesArr[i].length + ' miles, ' + sortedHikesArr[i].elevGain + ' ft. elevation gain';
+    liEl.innerHTML = '<span><a href="' + hikeURL + '"target="_blank">' + sortedHikesArr[i].name + '</a></span>' + ', ' + sortedHikesArr[i].rating + ' rating, ' + sortedHikesArr[i].length + ' miles, ' + sortedHikesArr[i].elevGain + ' ft. elevation gain';
     liEl.setAttribute('class','hike-list-li');
     hikeList.appendChild(liEl);
   }
