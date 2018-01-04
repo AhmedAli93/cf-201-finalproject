@@ -313,3 +313,29 @@ h4 {
   margin-top: 8px;
   margin-right: 5px;
 }
+.no-results{
+  background-color: #E1E9F4;
+}
+.no-results-header{
+  background-color: #243E5A;
+}
+#message{
+  font-size: 20px;
+  margin-left: 35%;
+  margin-top: 15%;
+  margin-bottom: 10px;
+  font-family: Raleway;
+}
+.button-message{
+  font-size: 20px;
+  margin-left: 40%;
+  background-color: #243E5A;
+  border: none;
+  color: white;
+  padding: 20px 35px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  font-family: Raleway;
+}
