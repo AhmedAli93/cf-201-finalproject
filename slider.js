@@ -5,7 +5,7 @@ var slider = new airSlider({
   autoPlay: true,
 
   // autoplay interval
-  autoPlayTime: 2200,
+  autoPlayTime: 4000,
 
   // slider size
   width: '100vw',
